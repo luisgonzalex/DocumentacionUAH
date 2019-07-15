@@ -48,7 +48,7 @@ donde extra es un elemento de el set \{1\_1\_edpaths, cadgeo, rdata, sdata, 1\_1
 
 \section{Simulacion}
 Hay dos formas de utilizar las funciones que fueron escritas. El primer enfoque se trata de escribir un script que llame a calcIR\_simwav multiples veces con la lista de todos los wav que quieras simular. De esta forma, solo tienes que llamar a la funcion una vez y tendras los resultados. Lo que tendra uno que hacer es generar la lista de rutas a los ficheros wav.\\\\
-Otra forma de generar los wav simulados seria llamar la funcion con solo la sala, el array de microfonos, y el $\delta l$ de la cuadricula. De esta forma tendras las respuestas al impulso y podras llamar la otra funcion y selecionar las respuestas al impulso junto con los wav que quieras simular. 
+Otra forma de generar los wav simulados seria llamar la funcion con solo la sala, el array de microfonos, y el $\Delta l$ de la cuadricula. De esta forma tendras las respuestas al impulso y podras llamar la otra funcion y selecionar las respuestas al impulso junto con los wav que quieras simular. 
 
 \section{Addendum}
 Al generar los puntos de la sala, se generan cordenadas de una caja, y despues se usa una funcion que verifica si el punto esta dentro de la sala. Si es el caso que el punto esta fuera de la sala, se generera un warning en la ventana de comando. Igualmente cuando una simulacion no se pueda realizar dudo a que la fuente/microfono esten muy cercanos, se genera un warning y se trata de simular el punto siguiente. Si la simulacion llega a un error inesperado, el codigo para y tendra que correrse de nuevo. Esto se hace para no generar simulaciones erroneas.  
