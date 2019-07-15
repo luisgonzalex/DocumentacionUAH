@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Simulacion Acustica - GEINTRA UAH}
+\author{Luis Gonzalez}
+\date{Julio 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Este documento servira como un guia para trabajar con los scripts en MATLAB que ayudan con la simulacion de las salas con varias fuentes y receptores. En resumen, el algoritmo recibe una sala, un array de microfonos, y una lista de ficheros .wav que deseas simular, y genera un .wav simulado por cada combinacion de fuente y microfono cual sea valida en la sala. Se utiliza el Edge Diffraction Toolbox (EDT), un codigo escrito por Peter Svensson de la Norwegian University of Science and Technology, para hacer simulaciones acusticas con reflexiones especulares y difusas. Primero, se haran claro los requisitos que se ocupan para correr el codigo. Despues, se hablara sobre la gestion de archivos despues de la simulacion.
+
+\section{Prerrequisitos}
+Para obtener la version mas actual de el codigo, uno puede usar el servicio de version de control que se utiliza el grupo GEINTRA, el CVS. Adentro de cvs, usando el comando:
+\begin{center}
+    cvs co proyecto-matlab/AcousticRoomSimulation
+\end{center}
+todos los ficheros seran copiados y archivados localmente. El codigo ha sido escrito y ejecutado en versiones 2018 y 2019 de MATLAB, entonces no es prometido que todas las funciones trabajen como intendidas en versiones anteriores. De todas formas, con la version local, agrega todo el codigo en la carpeta "AplicacionFinal" a el path de tu workspace en MATLAB.
+\section{Codigo}
+Hay dos scripts que se toman a cargo de las simulaciones. Primero tenemos la fucncion \texttt{calcIR\_simwav}, cual tiene de input: 
+\begin{itemize}
+    \item \texttt{fpath}: La ruta a el directorio donde se van a guardar los resultados de la simulacion. Esto seran los ficheros de la respuesta de impulso y los setup files de la simulacion, para no confundirse con los ficheros wav que son realmente lo que queremos de al final de la simulacion. 
+    \item \texttt{path\_rm}: La ruta a el fichero de la sala. Esto deberia de ser extension .cad, ya que hay problemas con la conversion de .env a .cad que no se pudieron resolver.
+    \item \texttt{path\_mc}: La ruta a el ficher de el array de microfonos. La extension sera de tipo .arr.
+    \item \texttt{path\_wav}: Una lista de rutas a los ficheros .wav que deseas simular. Si solo quieres simular un fichero, vale con solo usar la ruta como un string.
+    \item \texttt{path\_out}: La ruta donde se guardaran los wav simulados.
+    \item \texttt{dl}: Se refiere a el "skip" de la cuadricula que se genera en la sala. 
+    \item \texttt{start}: El tiempo de incio para el fichero wav. Es decir, dandole un valor de 1 se refiere que el .wav simulado empieza al primer segundo de el .wav original
+    \item \texttt{window}: Se refiere a la ventana que quieres grabar. 
+\end{itemize}
+Al correr la funcion con los parametros bien definidos, las respuestas del impulso son generadas y guardadas en su destinacion definida. Al final de esta funcion, se llama el segundo script, cual es el que genera los wav simulados. \\\\
+El segundo script es \texttt{simwavfromir}. Esta funcion recibe de input una list de todos los ficheros de respuesta al impulso y tambien varios parametros de la funcion principal, como el tiempo de incio y la ventana. Esta es una funcion simple cual genera una convulcion entre la señal de la respuesta al impulso y el wav para generar el audio simulado. Despues, el fichero es guardado en el directorio que hayas definido antes. 
+
+\section{Gestion de Archivos}
+
+\end{document}
